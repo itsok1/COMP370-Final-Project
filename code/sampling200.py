@@ -9,17 +9,24 @@ import os
 
 MEDIA_SAMPLING_PLAN = {
     "left": {
-        "NYTimes": ("data/zelensky_nytimes.csv", 25),
+        "CBC": ("data/zelensky_cbc.csv", 20),
+    },
+    "center-left": {
+        "NBC": ("data/zelensky_nbc.csv", 20),
         "NPR": ("data/zelensky_npr.csv", 20),
-        "NBC": ("data/zelensky_nbc.csv", 25),
+        "NYTimes": ("data/zelensky_nytimes.csv", 20),
+        "CTV": ("data/zelensky_ctv.csv", 20)
     },
     "center": {
-        "AP": ("data/zelensky_ap.csv", 35),
-        "NTV": ("data/zelensky_ntv.csv", 25),
+        "AP": ("data/zelensky_ap.csv", 20),
+        "WSJ": ("data/zelensky_wsj.csv", 20),
+        "GlobalNews": ("data/zelensky_globalnews.csv", 20)
     },
+    "center-right": {
+        "WSJOpinions": ("data/zelensky_wsjopinions.csv", 3)
+    }
     "right": {
-        "FoxNews": ("data/zelensky_foxnews.csv", 35),
-        "WSJ": ("data/zelensky_wsj.csv", 35),
+        "FoxNews": ("data/zelensky_foxnews.csv", 37)
     }
 }
 
