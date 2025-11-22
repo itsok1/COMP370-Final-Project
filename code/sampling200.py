@@ -24,7 +24,7 @@ MEDIA_SAMPLING_PLAN = {
     },
     "center-right": {
         "WSJOpinions": ("data/zelensky_wsjopinions.csv", 3)
-    }
+    },
     "right": {
         "FoxNews": ("data/zelensky_foxnews.csv", 37)
     }
