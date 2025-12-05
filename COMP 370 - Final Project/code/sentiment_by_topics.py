@@ -32,7 +32,6 @@ for file in csv_files:
     outlet = rename_map.get(outlet_key, outlet_key)
     df["outlet"] = outlet
 
-    # Clean sentiment labels
     df["sentiment"] = (
         df["sentiment"]
         .astype(str)
@@ -48,7 +47,6 @@ full_df = pd.concat(all_dfs, ignore_index=True)
 results_dir = project_root / "results"
 results_dir.mkdir(exist_ok=True)
 
-# Put sentiment in a nice order (optional but looks better)
 sentiment_order = ["negative", "neutral", "positive"]
 full_df["sentiment"] = pd.Categorical(
     full_df["sentiment"],
@@ -71,7 +69,7 @@ plt.tight_layout()
 output_path_outlet = results_dir / "sentiment_by_outlet.png"
 plt.savefig(output_path_outlet, dpi=300)
 plt.close()
-print(f"Saved figure to: {output_path_outlet}")
+
 
 # Sentiment by topic  
 
@@ -109,21 +107,13 @@ plt.tight_layout()
 output_path_topic = results_dir / "sentiment_by_topic.png"
 plt.savefig(output_path_topic, dpi=300)
 plt.close()
-print(f"Saved figure to: {output_path_topic}")
-
 
 # Topic Trends Over Time
 
 DATE_COL = "date"
 TOPIC_COL = "label"
 
-if DATE_COL not in full_df.columns:
-    raise KeyError(f"Column '{DATE_COL}' not found. Change DATE_COL to your actual date column name.")
-
-if TOPIC_COL not in full_df.columns:
-    raise KeyError(f"Column '{TOPIC_COL}' not found. Change TOPIC_COL to your actual topic column name.")
-
-# Convert date column to datetime
+# Convert date
 full_df[DATE_COL] = pd.to_datetime(full_df[DATE_COL], errors="coerce")
 
 time_df = full_df.dropna(subset=[DATE_COL, TOPIC_COL]).copy()
@@ -141,14 +131,13 @@ topic_trends = (
     .unstack(fill_value=0)
 )
 
-# Build a full index: every month from 2022-01 to 2025-12
+# Build from 2022-01 to 2025-12
 years = range(2022, 2026)
 months = range(1, 13)
 full_index = pd.MultiIndex.from_product(
     [years, months],
     names=["year", "month"]
 )
-
 topic_trends = topic_trends.reindex(full_index, fill_value=0)
 topic_trends.index = [f"{y}-{m:02d}" for (y, m) in topic_trends.index]
 
@@ -174,4 +163,4 @@ output_path_time = results_dir / "topic_trends_over_time.png"
 plt.savefig(output_path_time, dpi=300)
 plt.close()
 
-print(f"Saved figure to: {output_path_time}")
+
