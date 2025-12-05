@@ -1,7 +1,7 @@
 
 ---
 
-## 📝 Project Overview
+## Project Overview
 
 Our goal was to understand **how North American news media portray Zelenskyy**, using a dataset of **700 articles** from U.S. and Canadian outlets. Each article was manually annotated for:
 
@@ -16,7 +16,7 @@ We then computed:
 
 ---
 
-## 🔍 Method Summary
+## Method Summary
 
 ### **1. Data Collection**
 - Articles collected from 9 major outlets (U.S. + Canada)
